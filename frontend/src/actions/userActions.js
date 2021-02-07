@@ -27,6 +27,7 @@ import {
   USER_UPDATE_REQUEST,
   USER_UPDATE_SUCCESS,
   USER_UPDATE_FAIL,
+  ORDER_LIST_RESET,
 } from './types';
 
 export const login = (email, password) => async (dispatch) => {
@@ -70,6 +71,7 @@ export const logout = () => (dispatch) => {
   dispatch({ type: USER_DETAILS_RESET });
   dispatch({ type: USER_UPDATE_PROFILE_RESET });
   dispatch({ type: USER_LIST_RESET });
+  dispatch({ type: ORDER_LIST_RESET });
   document.location.href = '/login';
 };
 
