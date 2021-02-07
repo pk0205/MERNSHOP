@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { getUserDetails, updateUserProfile } from '../actions/userActions';
-// import { listMyOrders } from '../actions/orderActions';
+import { listMyOrders } from '../actions/orderActions';
 
 const ProfileScreen = ({ location, history }) => {
   const [name, setName] = useState('');
@@ -26,8 +26,8 @@ const ProfileScreen = ({ location, history }) => {
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
   const { success } = userUpdateProfile;
 
-  //   const orderListMy = useSelector((state) => state.orderListMy);
-  //   const { loading: loadingOrders, error: errorOrders, orders } = orderListMy;
+  const orderListMy = useSelector((state) => state.orderListMy);
+  const { loading: loadingOrders, error: errorOrders, orders } = orderListMy;
 
   useEffect(() => {
     if (!userInfo) {
@@ -36,7 +36,7 @@ const ProfileScreen = ({ location, history }) => {
       if (!user || !user.name) {
         // dispatch({ type: USER_UPDATE_PROFILE_RESET });
         dispatch(getUserDetails('profile'));
-        // dispatch(listMyOrders());
+        dispatch(listMyOrders());
       } else {
         setName(user.name);
         setEmail(user.email);
@@ -112,7 +112,7 @@ const ProfileScreen = ({ location, history }) => {
           </Form>
         )}
       </Col>
-      {/* <Col md={9}>
+      <Col md={9}>
         <h2>My Orders</h2>
         {loadingOrders ? (
           <Loader />
@@ -162,7 +162,7 @@ const ProfileScreen = ({ location, history }) => {
             </tbody>
           </Table>
         )}
-      </Col> */}
+      </Col>
     </Row>
   );
 };
