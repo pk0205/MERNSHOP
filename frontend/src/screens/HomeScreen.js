@@ -7,26 +7,27 @@ import Product from './../components/Product';
 import Loader from './../components/Loader';
 import Message from './../components/Message';
 import Paginate from '../components/Paginate';
-// import ProductCarousel from '../components/ProductCarousel';
+import ProductCarousel from '../components/ProductCarousel';
 // import Meta from '../components/Meta';
 import { listProducts } from './../actions/productActions';
 
 const HomeScreen = ({ match }) => {
   const keyword = match.params.keyword;
 
-  // const pageNumber = match.params.pageNumber || 1;
+  const pageNumber = match.params.pageNumber || 1;
 
   const dispatch = useDispatch();
 
   const productList = useSelector((state) => state.productList);
-  const { loading, products, error } = productList;
+  const { loading, products, page, pages, error } = productList;
 
   useEffect(() => {
-    dispatch(listProducts(keyword));
-  }, [dispatch, keyword]);
+    dispatch(listProducts(keyword, pageNumber));
+  }, [dispatch, keyword, pageNumber]);
 
   return (
     <>
+      {!keyword && <ProductCarousel />}
       <h1>Latest Products</h1>
       {loading ? (
         <Loader />
@@ -41,11 +42,11 @@ const HomeScreen = ({ match }) => {
               </Col>
             ))}
           </Row>
-          {/* <Paginate
+          <Paginate
             pages={pages}
             page={page}
             keyword={keyword ? keyword : ''}
-          /> */}
+          />
         </>
       )}
     </>
