@@ -11,8 +11,8 @@ import Paginate from '../components/Paginate';
 // import Meta from '../components/Meta';
 import { listProducts } from './../actions/productActions';
 
-const HomeScreen = () => {
-  // const keyword = match.params.keyword;
+const HomeScreen = ({ match }) => {
+  const keyword = match.params.keyword;
 
   // const pageNumber = match.params.pageNumber || 1;
 
@@ -22,8 +22,8 @@ const HomeScreen = () => {
   const { loading, products, error } = productList;
 
   useEffect(() => {
-    dispatch(listProducts());
-  }, [dispatch]);
+    dispatch(listProducts(keyword));
+  }, [dispatch, keyword]);
 
   return (
     <>

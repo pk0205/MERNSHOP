@@ -15,7 +15,9 @@ import uploadRoutes from './routes/uploadRoutes.js';
 connectDB();
 const app = express();
 app.use(express.json());
-app.use(morgan('dev'));
+if (process.env.NODE_ENV == 'production') {
+  app.use(morgan('dev'));
+}
 
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
