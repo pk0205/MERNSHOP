@@ -24,7 +24,11 @@ const Header = () => {
             <Navbar.Brand>MERNSHOP</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Route render={({ history }) => <SearchBox history={history} />} />
+          <Route
+            render={({ history, location }) => (
+              <SearchBox history={history} location={location} />
+            )}
+          />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
               <LinkContainer to="/cart">

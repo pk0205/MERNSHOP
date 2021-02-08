@@ -8,6 +8,7 @@ import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
 import { listProductDetails, updateProduct } from '../actions/productActions';
 import { PRODUCT_UPDATE_RESET } from '../actions/types';
+import Meta from '../components/Meta';
 
 const ProductEditScreen = ({ match, history }) => {
   const productId = match.params.id;
@@ -70,7 +71,6 @@ const ProductEditScreen = ({ match, history }) => {
       setImage(data);
       setUploading(false);
     } catch (err) {
-      console.error(err);
       setUploading(false);
     }
   };
@@ -93,6 +93,7 @@ const ProductEditScreen = ({ match, history }) => {
 
   return (
     <>
+      <Meta title="Create Product" />
       <Link to="/admin/productlist" className="btn btn-light my-3">
         Go Back
       </Link>
